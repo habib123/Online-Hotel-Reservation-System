@@ -20,7 +20,7 @@ public class BookDao extends AbstractDao{
 				+ "address,phone,paymentmethod,totalcost,days,comment) ")
 		.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ")
 		.toString();		
-		// java.sql.Date sqlDate = new java.sql.Date(entryTime.getTime());
+
 		try {
 		Connection connection = createConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
