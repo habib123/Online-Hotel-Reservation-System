@@ -15,22 +15,23 @@
       <div id="logo">
         <h1>HOTEL STAR</h1>
       </div>
-      <h2>INVOICE : ID</h2>
+      <h2>INVOICE : ${bookBean.id}</h2>
       <div id="company" class="clearfix">
         <div>Hotel Star</div>
         <div>Christoph-probst Str. 8<br /> 80805 , Munich</div>
-        <div>(602) 519-0450</div>
+        <div>+49-15224685887</div>
         <div>company@star.com</a></div>
       </div>
       <div id="project">
         <div><span>STATUS</span>Room Booking System </div>
-        <div><span>CUSTOMER</span>${customerBean.firstname} ${customerBean.lastname}</div>
+        <div><span>CUSTOMER</span>${customerBean.firstname}&nbsp;&nbsp;&nbsp;${customerBean.lastname}</div>
         <div><span>ADDRESS</span> ${bookBean.address}</div>
         <div><span>EMAIL</span>${customerBean.e_mail}</div>
         <div><span>DATE</span> ${bookBean.booked_time}</div>
       </div>
     </header>
     <main>
+    <div><a href="insex.jsp" >Home</a><a href="signOutServlet" >sign out</a></div>
       <table>
         <thead>
           <tr>
@@ -53,10 +54,24 @@
             <td class="desc">${bookBean.days}</td>  
           </tr>
           <tr>
-            <td class="service">Payment Method</td>
-            <td class="desc">${bookBean.paymentmethod}</td>
+            <td class="service">Price Per Day</td>
+            <td class="desc">${bookBean.price_perday}$</td>  
           </tr>
-           <tr>
+		  <c:choose>
+		    <c:when test="${empty bookBean.paymentmethod}">
+		       <tr>
+	            <td class="service">Payment Method</td>
+	            <td class="desc">-</td>
+	          </tr>
+		    </c:when>
+		    <c:otherwise>
+		       <tr>
+	            <td class="service">Payment Method</td>
+	            <td class="desc">${bookBean.paymentmethod}</td>
+	          </tr>
+		    </c:otherwise>
+		  </c:choose>
+          <tr>
             <td class="service">Phone</td>
             <td class="desc">${bookBean.phone}</td>
           </tr>
@@ -66,7 +81,7 @@
           </tr>
          <tr>
             <td class="grand total">TOTAL PAYABLE COST</td>
-            <td class="grand total">${bookBean.totalcost}</td>
+            <td class="grand total">${bookBean.totalcost}$</td>
           </tr>
         </tbody>
       </table>

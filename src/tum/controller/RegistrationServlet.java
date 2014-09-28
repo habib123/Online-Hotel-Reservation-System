@@ -70,7 +70,6 @@ public class RegistrationServlet extends HttpServlet {
 			HttpSession session = req.getSession(true); 
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
-			session.setAttribute("cust_id", cust_id);
 		    
 			req.setAttribute("customerName", lastname + ", " + firstname);
 	

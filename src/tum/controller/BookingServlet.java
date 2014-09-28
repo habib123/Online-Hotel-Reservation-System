@@ -38,14 +38,15 @@ public class BookingServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		 req.getRequestDispatcher("customerLogin.jsp").include(req, resp);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 				 BookDao bookDao = new BookDao();
 				 BookBean bookBean = new BookBean();
 				 LoginDao loginDao = new LoginDao();
@@ -71,51 +72,35 @@ public class BookingServlet extends HttpServlet {
 						payMethodAdd += s+" ";
 					}
 				}
+				int Roomprice =0 ;
+				if(roomtype.equals("Single")) 
+					Roomprice = 50;
 				
-				 
+				else if(roomtype.equals("Double"))
+					Roomprice = 80;
+
+				else
+					Roomprice = 100;
+				
 				// Getting system current date
 				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 				Calendar cal = Calendar.getInstance();
 				String bookingDate = dateFormat.format(cal.getTime());
 				
-				
-				// set BookBean to get in to the Invoice 
-				bookBean.setHotel_name(hotelname);
-				bookBean.setAddress(address);
-				bookBean.setPhone(phone);
-				bookBean.setRoom_type(roomtype);
-				bookBean.setDays(days);
-				bookBean.setPaymentmethod(payMethodAdd);
-				bookBean.setComment(comment);
-				bookBean.setTotalcost(totalcost);
-				bookBean.setBooked_time(bookingDate);
-				//bookBean.setEntry_time(entry_time);
-				
-				System.out.println(totalcost);
+				//System.out.println(totalcost);
 				try {
 										 
-					HttpSession session = req.getSession();
-					if (session.isNew()) {
-						session.setAttribute("username", username);
-						session.setAttribute("password", password);
-						 
-					} else {
-						String username_old =  (String) req.getSession().getAttribute("username");
-						   String password_old = (String) req.getSession().getAttribute("password");
-						   int cust_id = (int) req.getSession().getAttribute("cust_id");
-						// System.out.print(username_old+ " "+password_old+" "+cust_id);
-						 int id = bookDao.insertInToBooking(cust_id,hotelname, address, phone, roomtype, days,
-								 payMethodAdd, comment, totalcost, bookingDate, entryDate);
-						 System.out.print(username_old+"sss"+password_old);
-						 
-						 int user_id = loginDao.checkUserbyUserNameOrPassword(username_old, password_old);
-						 System.out.print("user_iv=="+user_id);
-						 customerBean = customerDao.getCustomerById(user_id);
-						
-					}
-				    
-					System.out.print(customerBean.getFirstname());
-					req.getSession().setAttribute("fastname",customerBean.getFirstname());
+				    String username_old =  (String) req.getSession().getAttribute("username");
+				    String password_old = (String) req.getSession().getAttribute("password");
+						   
+					int user_id = loginDao.checkUserbyUserNameOrPassword(username_old, password_old);
+						   customerBean = customerDao.getCustomerById(user_id);
+						   System.out.println("user_id from login"+user_id);
+				    int id = bookDao.insertInToBooking(customerBean.getCust_id(),hotelname, address, phone, roomtype, days,
+								 payMethodAdd, comment, totalcost, bookingDate, entryDate,Roomprice);
+						    
+					bookBean = bookDao.getBookBeanById(id);
+
 					req.getSession().setAttribute("bookBean",bookBean);
 					req.getSession().setAttribute("customerBean",customerBean);
 														
@@ -138,6 +123,8 @@ public class BookingServlet extends HttpServlet {
 				}
 				
 				dispatcher.forward(req, resp);
-		}
+		
+	}
+	
 
 }

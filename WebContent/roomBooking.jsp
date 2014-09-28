@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%  
+if (request.getParameter("username") == null) {  
+    //session.invalidate();
+    response.sendRedirect("customerLogin.jsp");
+    return; // <--- Here.
+}
+  
+%>
+
+    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html5/loose.dtd">
 
 
@@ -75,19 +86,19 @@ jQuery(document).ready(function() {
 			
 		if(room == "Single"){
               var totalcost = day*50;
-              document.getElementById("p1").innerHTML = "Total cost= "+totalcost;
+              document.getElementById("p1").innerHTML = "Total cost= "+totalcost+"$";
 			  document.getElementsByName("total")[0].setAttribute("value", totalcost);
  
 			}
 		else if(room == "Double"){
 			  var totalcost = day*80;
-              document.getElementById("p1").innerHTML = "Total cost= "+totalcost; 
+              document.getElementById("p1").innerHTML = "Total cost= "+totalcost+"$"; 
 			  document.getElementsByName("total")[0].setAttribute("value", totalcost);
 			}
 			
 			else{
               var totalcost = day*100;
-              document.getElementById("p1").innerHTML = "Total cost= "+totalcost; 
+              document.getElementById("p1").innerHTML = "Total cost= "+totalcost+"$"; 
 			  document.getElementsByName("total")[0].setAttribute("value", totalcost);
 			}
 
@@ -261,14 +272,14 @@ jQuery(document).ready(function() {
 							<select name = "days" onchange="OnSelectionChange()" id="day">
 							  <option value="1">1</option>
 							  <option value="2">2</option>
-							  <option value="10">3</option>
+							  <option value="3">3</option>
 							  <option value="4">4</option>
 							  <option value="5">5</option>
 							  <option value="6">6</option>
 							  <option value="7">7</option>
 							</select>
-							<total id="p1" name="totalcost" value="30"></total>
-							<input id="p2" name="total" type = "hidden"  value="30">
+							<total id="p1" name="totalcost" value="50">Total Cost 50$</total>
+							<input id="p2" name="total" type = "hidden"  value="50">
 							</p>
 							<p>
 								<label for="paymentOption">I'd like to define my payment method</label>
@@ -328,3 +339,4 @@ jQuery(document).ready(function() {
 <!-- Free Website Templates @ TemplateMo.com -->
 </body>
 </html>
+

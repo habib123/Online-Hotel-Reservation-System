@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>free website template - hotel and travel</title>
+<title>Hotel Star</title>
 <meta name="keywords" content="free website templates, hotel and travel, CSS, XHTML, design layout" />
 <meta name="description" content="Hotel and Travel - free website template provided by templatemo.com" />
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />

@@ -3,7 +3,7 @@ package tum.Bean;
 import java.sql.Date;
 
 public class BookBean {
-	
+	private int id;
 	private int book_id;
 	private String hotel_name;
 	private String location;
@@ -18,8 +18,20 @@ public class BookBean {
 	private Double totalcost;
 	private int days;
 	private String comment;
+	private String status;
 	
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getBook_id() {
 		return book_id;
 	}

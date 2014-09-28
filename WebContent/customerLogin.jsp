@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -7,7 +8,7 @@
 
   <meta charset="UTF-8">
 
-  <title>Login Form - CodePen</title>
+  <title>Login Form</title>
 
     <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
     
@@ -43,10 +44,6 @@
 					required: true,
 					email: true
 				},
-				topic: {
-					required: "#newsletter:checked",
-					minlength: 2
-				},
 				agree: "required"
 			}, 
 			messages: {
@@ -71,26 +68,8 @@
 			}
 		});
 
-		// propose username by combining first- and lastname
-		$("#username").focus(function() {
-			var firstname = $("#firstname").val();
-			var lastname = $("#lastname").val();
-			if (firstname && lastname && !this.value) {
-				this.value = firstname + "." + lastname;
-			}
-		});
 
-		//code to hide topic selection, disable for demo
-		var newsletter = $("#newsletter");
-		// newsletter topics are optional, hide at first
-		var inital = newsletter.is(":checked");
-		var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
-		var topicInputs = topics.find("input").attr("disabled", !inital);
-		// show when newsletter is checked
-		newsletter.click(function() {
-			topics[this.checked ? "removeClass" : "addClass"]("gray");
-			topicInputs.attr("disabled", !this.checked);
-		});
+		
 	});
 	</script>
 	
@@ -110,11 +89,18 @@
 	<div class="login">
 		<div class="login-screen">
 			<div class="app-title">
+			    <c:if test="${not empty message }">
+				    <h3 class="error">${message}</h3>
+			    </c:if>
 				<h1 style="color:#0099FF;">Login</h1>
 			</div>
 				
 			<div class="login-form">
-			<form id="signin">
+			<form id="signin" method="post" action="status">
+
+				<c:if test="${not empty error}">
+				    <h3 class="error">${error}</h3>
+				</c:if>
 				<div class="control-group">
 				<input type="text" class="login-field" value="" placeholder="username" id="login-name" name="username">
 				<label class="login-field-icon fui-user" for="login-name"></label>
