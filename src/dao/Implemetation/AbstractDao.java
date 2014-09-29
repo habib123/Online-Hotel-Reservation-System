@@ -68,13 +68,18 @@ private Connection con;
 	}
 	
 	protected Timestamp convertToTimeStamp(String stringDate) throws ParseException{
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date parsedDate = dateFormat.parse(stringDate);
 	    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
         return timestamp;
 	}
-	
-	protected Date convertSqlToUtilDate(java.sql.Date date) throws ParseException{
+	protected Timestamp convertToTimeSta(String stringDate) throws ParseException{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    Date parsedDate = dateFormat.parse(stringDate);
+	    Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+        return timestamp;
+	}
+	protected Date convertSqlToUtilDate(Date date) throws ParseException{
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date parsedDate = format.parse(date.toString());
         return parsedDate;

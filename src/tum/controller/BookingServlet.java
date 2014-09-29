@@ -39,22 +39,36 @@ public class BookingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		 req.getRequestDispatcher("customerLogin.jsp").include(req, resp);
+		 //HttpSession session = req.getSession(false);
+		 
+			if (req.getSession().getAttribute("username") == null) {
+				//session.invalidate();
+			    resp.sendRedirect("customerLogin.jsp");
+			    return; // <--- Here
+			}else
+		
+		 resp.sendRedirect("roomBooking.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+
+		if (req.getSession().getAttribute("username") == null) {
+			//session.invalidate();
+		    resp.sendRedirect("customerLogin.jsp");
+		    return; // <--- Here
+		}
+    System.out.print(req.getSession().getAttribute("username"));
 		
 				 BookDao bookDao = new BookDao();
 				 BookBean bookBean = new BookBean();
 				 LoginDao loginDao = new LoginDao();
 				 CustomerDao customerDao = new CustomerDao();
 				 CustomerBean customerBean = new CustomerBean();
-		       
-				String username = req.getParameter("username");  // new session from login
-				String password = req.getParameter("password");  //  new session from login
+
 				String hotelname = req.getParameter("hotelname");
 				String address = req.getParameter("address");
 				String phone = req.getParameter("phone");
@@ -63,8 +77,11 @@ public class BookingServlet extends HttpServlet {
 				String[] paymethod = req.getParameterValues("payMethod");
 				String comment = req.getParameter("comment");
 				Double totalcost = Double.parseDouble(req.getParameter("total"));
-				Date entryDate = new Date();
+				String entryDate = req.getParameter("cal");
 				RequestDispatcher dispatcher = null;
+				
+				
+				//Date entydate = new SimpleDateFormat("MMMM d, yyyy").parse(entryDate);
 				
 				String payMethodAdd = new String();
 				if(paymethod != null ){
@@ -83,11 +100,11 @@ public class BookingServlet extends HttpServlet {
 					Roomprice = 100;
 				
 				// Getting system current date
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 				Calendar cal = Calendar.getInstance();
 				String bookingDate = dateFormat.format(cal.getTime());
 				
-				//System.out.println(totalcost);
+				System.out.println(bookingDate);
 				try {
 										 
 				    String username_old =  (String) req.getSession().getAttribute("username");

@@ -38,8 +38,10 @@ public class loginCustServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher dispatcher = null;
+		dispatcher = req.getRequestDispatcher("/customerLogin.jsp");
+		dispatcher.forward(req, resp);
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class loginCustServlet extends HttpServlet {
 			    
 			    }
 			    else{
-				HttpSession session = req.getSession(); 
+				HttpSession session = req.getSession(true); 
 				//session.invalidate();
 				session.setAttribute("username", username);
 				session.setAttribute("password", password);

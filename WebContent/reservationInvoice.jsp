@@ -1,17 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+
+<%  
+
+if(null == session.getAttribute("username")){  
+  response.sendRedirect("customerLogin.jsp");  
+}else{  
+%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Invoice for Room Booking</title>
     <link rel="stylesheet" href="css/invoice.css" media="all" />
+ <style>
+ 
+ td.total{
+ float:left !important;
+  margin-top:10px;
+ }
+ 
+ 
+ </style>
   </head>
   <body>
     <header class="clearfix">
     <h3><font color=green>YOUR ROOM HAS BEEN BOOKED SUCCESSFULLY!!</font></h3>
+    <div><p><h2><a href="index.jsp"  class="menuu" style="text-decoration: none; color=green;">Home</a>&nbsp;&nbsp;&nbsp;<a href="roomBooking.jsp"  class="menuu" style="text-decoration: none; color=green;">Room Booking</a>&nbsp;&nbsp;&nbsp;<a href="signOutServlet" style="text-decoration: none;color=green;"">sign out<h2></a></p></div>
       <div id="logo">
         <h1>HOTEL STAR</h1>
       </div>
@@ -31,7 +48,7 @@
       </div>
     </header>
     <main>
-    <div><a href="insex.jsp" >Home</a><a href="signOutServlet" >sign out</a></div>
+    
       <table>
         <thead>
           <tr>
@@ -90,3 +107,6 @@
 
   </body>
 </html>
+<%
+}
+%>

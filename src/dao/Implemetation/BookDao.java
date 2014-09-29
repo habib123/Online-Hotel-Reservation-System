@@ -4,25 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import tum.Bean.BookBean;
 
 @SuppressWarnings("serial")
 public class BookDao extends AbstractDao{
 	
 	public int insertInToBooking(int cust_id,String hotelname,String address, String phone, String roomtype, 
-			int days, String paymethod, String comment, Double totalcost,String bookedTime,Date entryTime,int Roomprice) throws Exception {
+			int days, String paymethod, String comment, Double totalcost,String bookedTime,String entryTime,int Roomprice) throws Exception {
 		
 
 		
 		String query = new StringBuilder()
-		.append("INSERT INTO booking(book_id,hotel_name,location,room_type,booked_time,"
+		.append("INSERT INTO booking(book_id,hotel_name,location,room_type,booked_time,entry_time,"
 				+ "address,phone,paymentmethod,totalcost,days,comment,price_perday,status) ")
-		.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ")
+		.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ")
 		.toString();		
-
+		
+		System.out.print("entry time after converting"+entryTime);
+		System.out.print("class="+convertToTimeSta(entryTime).getClass().getName());
 		try {
 		Connection connection = createConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
@@ -30,16 +34,23 @@ public class BookDao extends AbstractDao{
 		preparedStatement.setString(2, hotelname);
 		preparedStatement.setString(3, "Christoph-probst Str.8, 80805, Munich");
 		preparedStatement.setString(4, roomtype);
-		preparedStatement.setTimestamp(5, convertToTimeStamp(bookedTime));
-		//preparedStatement.setDate(6, new java.sql.Date(entryTime.getTime()));
-		preparedStatement.setString(6, address);
-		preparedStatement.setString(7, phone);
-		preparedStatement.setString(8, paymethod);
-		preparedStatement.setDouble(9, totalcost);
-		preparedStatement.setInt(10, days);
-		preparedStatement.setString(11, comment);
-		preparedStatement.setDouble(12, Roomprice);
-		preparedStatement.setString(13, "Pending");
+		
+		System.out.print("booked time before converting"+bookedTime+"okk");
+		
+		preparedStatement.setString(5, bookedTime);
+		
+		System.out.print("booked time after converting"+convertToTimeStamp(bookedTime));
+		System.out.print("class="+convertToTimeStamp(bookedTime).getClass().getName()+"end");
+		
+		preparedStatement.setTimestamp(6, convertToTimeSta(entryTime));
+		preparedStatement.setString(7, address);
+		preparedStatement.setString(8, phone);
+		preparedStatement.setString(9, paymethod);
+		preparedStatement.setDouble(10, totalcost);
+		preparedStatement.setInt(11, days);
+		preparedStatement.setString(12, comment);
+		preparedStatement.setDouble(13, Roomprice);
+		preparedStatement.setString(14, "Pending");
 		
 		
 		preparedStatement.executeUpdate();
@@ -77,15 +88,17 @@ public class BookDao extends AbstractDao{
 			bookBean.setLocation(rs.getString(4));
 			bookBean.setPrice_perday(rs.getInt(5));
 			bookBean.setRoom_type(rs.getString(6));
-			//bookBean.setBooked_time(rs.getString(7));
-			//bookBean.setEntry_time(rs.getDate(8));
-			//bookBean.setEntry_time(rs.getDate(9));
+			bookBean.setBooked_time(rs.getString(7));
+			System.out.print("Booked_time= "+bookBean.getBooked_time());
+			
+			bookBean.setEntry_time(rs.getTimestamp(8));
 			bookBean.setAddress(rs.getString(10));
 			bookBean.setPhone(rs.getString(11));
 			bookBean.setPaymentmethod(rs.getString(12));
 			bookBean.setTotalcost(rs.getDouble(13));
 			bookBean.setDays(rs.getInt(14));
 			bookBean.setComment(rs.getString(15));
+			bookBean.setStatus(rs.getString(16));
 			
 			bookBeanList.add(bookBean);
 		}
@@ -118,9 +131,8 @@ public class BookDao extends AbstractDao{
 			bookBean.setLocation(rs.getString(4));
 			bookBean.setPrice_perday(rs.getInt(5));
 			bookBean.setRoom_type(rs.getString(6));
-			//bookBean.setBooked_time(rs.getString(7));
-			bookBean.setEntry_time(rs.getDate(8));
-			bookBean.setEntry_time(rs.getDate(9));
+			bookBean.setBooked_time(rs.getString(7));
+			bookBean.setEntry_time(rs.getTimestamp(8));
 			bookBean.setAddress(rs.getString(10));
 			bookBean.setPhone(rs.getString(11));
 			bookBean.setPaymentmethod(rs.getString(12));

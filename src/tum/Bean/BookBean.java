@@ -1,6 +1,7 @@
 package tum.Bean;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class BookBean {
 	private int id;
@@ -10,7 +11,7 @@ public class BookBean {
 	private double price_perday;
 	private String room_type;
 	private String booked_time;
-	private Date entry_time;
+	private Timestamp entry_time;
 	private Date exit_time;
 	private String address;
 	private String phone;
@@ -68,10 +69,10 @@ public class BookBean {
 	public void setBooked_time(String booked_time) {
 		this.booked_time = booked_time;
 	}
-	public Date getEntry_time() {
+	public Timestamp getEntry_time() {
 		return entry_time;
 	}
-	public void setEntry_time(Date entry_time) {
+	public void setEntry_time(Timestamp entry_time) {
 		this.entry_time = entry_time;
 	}
 	public Date getExit_time() {

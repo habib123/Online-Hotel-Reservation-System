@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  
+
+if(null == session.getAttribute("username")){  
+  response.sendRedirect("customerLogin.jsp");  
+}else{  
+%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +24,7 @@
         <h2 class="name">Hotel Star</h2>
         <div>Christoph-probst Stra.8,80805,Munich</div>
         <div>+49-15224685887</div>
-        <div>company@example.com</div>
+        <div>hotelstar@tum.com</div>
       </div>
       </div>
     </header>
@@ -30,10 +37,10 @@
         </div>
         <div id="invoice">
           <h1>Your Bookig Status</h1>
-          <div class="date">Date of Request:  ${bookBean.booked_time}</div>
+          <div class="date" style="display:hide"></div>
         </div>
       </div>
-	  <div id="details" class="clearfix"><h2><a href="signOutServlet">Sign Out</a><a href="roomBooking.jsp">Room Booking</a></h2></div>
+	  <div id="details" class="clearfix"><h2><a href="index.jsp">Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="roomBooking.jsp">Room Booking</a><a href="signOutServlet">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign Out</a></h2></div>
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
@@ -61,17 +68,12 @@
           </tr>
           </c:forEach> 
         </tbody>
-        <tfoot style="background:none;">
-          <tr>
-            <td colspan="2" style="background:none;"></td>
-            <td colspan="2" style="background:none;">SUBTOTAL</td>
-            <td>$5,200.00</td>
-          </tr>
-
-        </tfoot>
       </table>
       <div id="thanks">Thank you!</div>
     </main>
  
   </body>
 </html>
+<%
+}
+%>

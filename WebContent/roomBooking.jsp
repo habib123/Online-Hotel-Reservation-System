@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%  
-if (request.getParameter("username") == null) {  
-    //session.invalidate();
-    response.sendRedirect("customerLogin.jsp");
-    return; // <--- Here.
-}
-  
+
+if(null == session.getAttribute("username")){  
+  response.sendRedirect("customerLogin.jsp");  
+}else{  
+
 %>
 
-    
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html5/loose.dtd">
-
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Hotel Reservation System</title>
@@ -105,8 +100,21 @@ jQuery(document).ready(function() {
 					
          
         } //function
-	
-	
+	function onClickCheck(){
+
+	var right = new Date();
+  	var d1 = document.getElementById("calendar").value;
+	var dd= new Date(d1);
+
+	if(right <= dd){
+	document.getElementById("dat").innerHTML = "";
+	}
+	else{
+	 document.getElementById("dat").innerHTML = "Can not be past date ";
+	  return false;  //alert("Hello! I am an alert dsasdasdsa!");
+	  }
+			
+}
 	
 	</script>
 	
@@ -128,7 +136,7 @@ jQuery(document).ready(function() {
 	 font-size: 200%;
 	  color: green;
 	}
-	
+	p#dat{color: red;}
 	</style>
 
 
@@ -243,8 +251,8 @@ jQuery(document).ready(function() {
 								<label for="hotelname">Well Come to Hotel star</label>
 								<input id="hotelname" name="hotelname" type="hidden" value = "Hotel Star" >
 							</p>
-							<p>Date: <input type="text" id="datepicker"></p>
-							
+							<p>Entry Date:<input name="cal" class="timeselect" type="date" onchange="onClickCheck()" id="calendar"required></p>
+							<p id="dat" class="error"></p>
 							<p>
 								<label for="address">Address(required)</label>
 								<input id="address" name="address" type="address" class="center">
@@ -311,19 +319,7 @@ jQuery(document).ready(function() {
 				</div>
 				
        	  </div>
-            
-            
 			<div class="cleaner_h40">&nbsp;</div>
-            
-      
-
-      
-            
-       
-            
-            
-                          
-        	
         </div> <!-- end of content right -->
         
         <div class="cleaner">&nbsp;</div>
@@ -339,4 +335,6 @@ jQuery(document).ready(function() {
 <!-- Free Website Templates @ TemplateMo.com -->
 </body>
 </html>
-
+<%
+}
+ %>

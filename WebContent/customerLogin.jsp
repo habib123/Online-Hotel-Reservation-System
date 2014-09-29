@@ -77,6 +77,11 @@
     <style>
     .error{
     color: red;
+    }
+     .error1{
+    color: green;
+    margin-left: 480px; !important;
+    //margin-right: auto !important;
     
     }
     </style>
@@ -86,12 +91,13 @@
 <body>
 
   <body>
+  			    <c:if test="${not empty message }">
+				    <h3 class="error1">${message}</h3>
+			    </c:if>
 	<div class="login">
 		<div class="login-screen">
 			<div class="app-title">
-			    <c:if test="${not empty message }">
-				    <h3 class="error">${message}</h3>
-			    </c:if>
+
 				<h1 style="color:#0099FF;">Login</h1>
 			</div>
 				
