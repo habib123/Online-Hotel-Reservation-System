@@ -17,10 +17,7 @@
 	<script>
 
 	$().ready(function() {
-		// validate the comment form when it is submitted
-		//$("#commentForm").validate();
 
-		// validate signup form on keyup and submit
 		$("#signupForm").validate({
 			rules: {
 				firstname: "required",
@@ -112,6 +109,13 @@
 	  color: green;
 	}
 	
+
+#templatemo_menu{
+padding-left: 100px;
+}
+
+	
+	
 	</style>
 
 
@@ -135,8 +139,7 @@
             <ul>
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="registrationForm.jsp"class="current">Bookings</a></li>
-                <li><a href="">Sign in</a></li>
-                <li><a href="">Sign out</a></li>
+                <li><a href="customerLogin.jsp">Sign in</a></li>
                 <li><a href="" class="last">Contact</a></li>
             </ul> 
         </div>    
@@ -147,43 +150,9 @@
     	<div id="content_left">
         	<div class="content_left_section">
             	<div class="content_title_01">Booking</div>
-                    <form method="get" action="#">
-                    
-                      <div class="form_row">
-                            <label>Arrival</label>
-                            <select name="day">
-                                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
-                            </select>
-                        <select name="month">
-                                <option>Jan</option><option>Feb</option><option>Mar</option><option>April</option><option>May</option><option>June</option><option>July</option><option>Aug</option><option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
-                        </select>
-                        <select name="year">
-                                <option>2010</option><option>2011</option><option>2012</option><option>2013</option><option>2014</option><option>2015</option><option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option>
-                        </select>
-                      </div>
-                      <div class="form_row">
-                            <label>Departure</label>
-                            <select name="day">
-                                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
-                            </select>
-                        <select name="month">
-                                <option>Jan</option><option>Feb</option><option>Mar</option><option>April</option><option>May</option><option>June</option><option>July</option><option>Aug</option><option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
-                        </select>
-                        <select name="year">
-                                <option>2010</option><option>2011</option><option>2012</option><option>2013</option><option>2014</option><option>2015</option><option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option>
-                        </select>
-                      </div>
-                        
-                        <div class="form_row">
-                            <label>Persons:</label>
-                            <input class="inputfield" name="person" type="text" style="width: 30px; margin-right: 20px;" />
-                        	
-                            <label>Rooms:</label>
-                            <input class="inputfield" name="person" type="text" style="width: 30px;" />
-                        </div>
-                        <div class="cleaner_h20">&nbsp;</div>
-                        <div class="rc_btn_01"><a href="#">Check Availability</a></div>                        
-                    </form>
+                         You can reserve hotel room by using this web site and see the room categories to select your room.
+                    This web is useful for reserving the room at least seven days ago even three months ago. If you are 
+                    interested to reserver your room now,then no more late to registration for the initiative. 
                 <div class="cleaner">&nbsp;</div>
             </div> <!-- end of booking -->
             
@@ -194,12 +163,12 @@
             <div class="content_left_section">
             <div class="content_title_01">Latest News</div>
                 
-                <div class="news_title">Nam auctor aliquam leo</div>
-                    <p>Pellentesque est elit, sagittis sit amet porttitor ut, ornare vel turpis. Vivamus eu enimvitae neque its posuere rutrum. <a href="#">read more</a></p>
+  				<div class="news_title">Executive room is cheap now</div>
+                    <p>Most of the customer are in need of executive rooms.So considering the situation hotel star authorities decided to offer a cheap price in this coming winter.<a href="#">read more</a></p>
                 <div class="cleaner_h30">&nbsp;</div>
 
-                <div class="news_title">Suspendisse pharetra eros molestie</div>
-                    <p>Vivamus eu enimvitae neque its posuere rutrum. Nam accumsan turpis at turpis molestie a convallis forte tor ornare. <a href="#">read more</a></p>
+                <div class="news_title">Discount for the student</div>
+                    <p>Hotel Star is now offering a lucrative price from winter.If student reserve room before seven days ago then they will get a good amount of discount.</br><a href="#">read more</a></p>
                   <div class="cleaner_h20">&nbsp;</div>
                     <div class="rc_btn_02"><a href="#">View All</a></div>         
           </div>   <!-- end of news section -->
@@ -228,7 +197,7 @@
 							</p>
 							<p>
 								<label for="firstname">Firstname</label>
-								<input id="firstname" name="firstname" type="text" style= "float:centre;" class="center" value="${firstname}">
+								<input id="firstname" name="firstname" type="text" style= "float:centre;" class="center" >
 							</p>
 							<p>
 								<label for="lastname">Lastname</label>
@@ -263,33 +232,11 @@
 			<div class="cleaner_h40">&nbsp;</div>
             
             <div class="content_right_2column_box">
-            	<div class="content_title_01">Tour Guides</div>
-                <p>Curabitur tempor mattis placerat. Duis malesuada posuere magna at fermentum.</p>
-                <ul>
-                	<li>Quisque facilisis suscipit elit</li>
-                    <li>Lacus et dictum tristique</li>
-                    <li>Eeros ac tincidunt aliquam</li>
-                    <li>Nullam commodo arcu non facilisis</li>
-                    <li>Duis commodo erat</li>
-                </ul> 
-                <div class="cleaner_h10">&nbsp;</div>
-                <div class="rc_btn_02"><a href="#">View All</a></div>          
+            	
+        
             </div>
 
-            <div class="content_right_2column_box">
-            	<div class="content_title_01">Services</div>     
-                <p>Donec eget ligula metus. In sapien nibh, tincidunt non ultricies vel, molestie quis massa. </p>           
-                <ul>
-                	<li>Cras metus lectus</li>
-                    <li>Mauris vitae lacinia tortor</li>
-                    <li>Suspendisse potenti</li>
-                    <li>Pellentesque tincidunt magna</li>
-                </ul>
-                <div class="cleaner_h10">&nbsp;</div>
-                <div class="rc_btn_02"><a href="#">View All</a></div>          
-            </div>    
-            
-            <div class="cleaner_h40">&nbsp;</div>
+   
             
             
             <div class="content_right_section">
@@ -327,10 +274,9 @@
     </div>
     
     <div id="templatemo_footer">
-    Copyright © 2048 <a href="#"><strong>Tehcnical University of Munich</strong></a> | <a href="http://www.iwebsitetemplate.com" target="_parent">Seminar Project</a> by <a href="http://www.templatemo.com" target="_parent">Md.Habibur Rahman</a>
+    Copyright © 2048 <a href="#"><strong>Tehcnical University of Munich</strong></a> | Seminar Project by <a href="#">Md.Habibur Rahman</a>
         <div style="clear: both; margin-top: 10px;">                
-            <a href="http://validator.w3.org/check?uri=referer"></a>
-            <a href="http://jigsaw.w3.org/css-validator/check/referer"></a>        </div> 
+                   </div> 
 	</div> <!-- end of footer -->
 </div> <!-- end of container -->
 <!-- Free Website Templates @ TemplateMo.com -->

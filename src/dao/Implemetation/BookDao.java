@@ -34,15 +34,8 @@ public class BookDao extends AbstractDao{
 		preparedStatement.setString(2, hotelname);
 		preparedStatement.setString(3, "Christoph-probst Str.8, 80805, Munich");
 		preparedStatement.setString(4, roomtype);
-		
-		System.out.print("booked time before converting"+bookedTime+"okk");
-		
 		preparedStatement.setString(5, bookedTime);
-		
-		System.out.print("booked time after converting"+convertToTimeStamp(bookedTime));
-		System.out.print("class="+convertToTimeStamp(bookedTime).getClass().getName()+"end");
-		
-		preparedStatement.setTimestamp(6, convertToTimeSta(entryTime));
+		preparedStatement.setString(6,entryTime);
 		preparedStatement.setString(7, address);
 		preparedStatement.setString(8, phone);
 		preparedStatement.setString(9, paymethod);
@@ -89,9 +82,7 @@ public class BookDao extends AbstractDao{
 			bookBean.setPrice_perday(rs.getInt(5));
 			bookBean.setRoom_type(rs.getString(6));
 			bookBean.setBooked_time(rs.getString(7));
-			System.out.print("Booked_time= "+bookBean.getBooked_time());
-			
-			bookBean.setEntry_time(rs.getTimestamp(8));
+			bookBean.setEntry_time(rs.getString(8));
 			bookBean.setAddress(rs.getString(10));
 			bookBean.setPhone(rs.getString(11));
 			bookBean.setPaymentmethod(rs.getString(12));
@@ -132,7 +123,7 @@ public class BookDao extends AbstractDao{
 			bookBean.setPrice_perday(rs.getInt(5));
 			bookBean.setRoom_type(rs.getString(6));
 			bookBean.setBooked_time(rs.getString(7));
-			bookBean.setEntry_time(rs.getTimestamp(8));
+			bookBean.setEntry_time(rs.getString(8));
 			bookBean.setAddress(rs.getString(10));
 			bookBean.setPhone(rs.getString(11));
 			bookBean.setPaymentmethod(rs.getString(12));

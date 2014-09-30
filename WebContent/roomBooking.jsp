@@ -7,68 +7,84 @@ if(null == session.getAttribute("username")){
 }else{  
 
 %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html5/loose.dtd">
 
-
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Hotel Reservation System</title>
+
 <link rel="stylesheet" href="css/screen.css">
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 
-
+	
 	<script src="lib/jquery.js"></script>
 	<script src="dist/jquery.validate.js"></script>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	
 	<script>
  
+	$().ready(function() {
 
-
-    jQuery.noConflict();
-jQuery(document).ready(function() {
-		// validate the comment form when it is submitted
-		
-		//$("#commentForm").validate();
-	
-		// validate signup form on keyup and submit
 		$("#signupForm").validate({
 			rules: {
 				address: "required",
 				phone: "required",
-				topic: {
-					required: "#newsletter:checked",
+				comment: "required",
+				username: {
+					required: true,
 					minlength: 2
 				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+				confirm_password: {
+					required: true,
+					minlength: 5,
+					equalTo: "#password"
+				},
+				email: {
+					required: true,
+					email: true
+				},
+
 				agree: "required"
-			},
+			}, 
 			messages: {
-				firstname: "Please enter your firstname",
-				lastname: "Please enter your lastname",
+				address: "Please enter your address",
+				phone: "Please enter your phone",
+				comment: "Please enter your comment",
+				username: {
+					required: "Please enter a username",
+					minlength: "Your username must consist of at least 2 characters"
+				},
+				password: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long"
+				},
+				confirm_password: {
+					required: "Please provide a password",
+					minlength: "Your password must be 5 characters long",
+					equalTo: "Please enter the same password as above"
+				},
+				email: "Please enter a valid email address",
 				agree: "Please accept our policy"
 			}
 		});
 
 
-		//code to hide topic selection, disable for demo
+		//code to hide payMethod selection, disable for demo
 		var payMethod = $("#paymentOption");
-		// newsletter topics are optional, hide at first
+		// payMethod topics are optional, hide at first
 		var inital = payMethod.is(":checked");
-		var topics = $("#paymentOption_topics")[inital ? "removeClass" : "addClass"]("gray");
-		var topicInputs = topics.find("input").attr("disabled", !inital);
-		// show when newsletter is checked
+		var method = $("#paymentOption_topics")[inital ? "removeClass" : "addClass"]("gray");
+		var methodInputs = method.find("input").attr("disabled", !inital);
+		// show when payMethod is checked
 		payMethod.click(function() {
-			topics[this.checked ? "removeClass" : "addClass"]("gray");
-			topicInputs.attr("disabled", !this.checked);
+			method[this.checked ? "removeClass" : "addClass"]("gray");
+			methodInputs.attr("disabled", !this.checked);
 		});
-	})(jQuery);
-	// $.noConflict();
-		$(function() {
-    $( "#datepicker" ).datepicker();
-  });
-	
+	});
 
        document.getElementById("p1").innerHTML = "Total cost= 30";
 	      function OnSelectionChange () {
@@ -102,11 +118,11 @@ jQuery(document).ready(function() {
         } //function
 	function onClickCheck(){
 
-	var right = new Date();
+	var rightNow = new Date();
   	var d1 = document.getElementById("calendar").value;
-	var dd= new Date(d1);
+	var date= new Date(d1);
 
-	if(right <= dd){
+	if(rightNow <= date){
 	document.getElementById("dat").innerHTML = "";
 	}
 	else{
@@ -137,6 +153,13 @@ jQuery(document).ready(function() {
 	  color: green;
 	}
 	p#dat{color: red;}
+	
+	
+	#templatemo_menu{
+padding-left: 100px;
+}
+	
+	
 	</style>
 
 
@@ -157,13 +180,14 @@ jQuery(document).ready(function() {
     
     <div id="templatemo_banner">
     	<div id="templatemo_menu">
+          
             <ul>
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="registrationForm.jsp"class="current">Bookings</a></li>
-                <li><a href="">Sign in</a></li>
-                <li><a href="">Sign out</a></li>
+                <li><a href="customerLogin.jsp">Sign in</a></li>
                 <li><a href="" class="last">Contact</a></li>
-            </ul>  
+            </ul>
+           
         </div>    
     </div> <!-- end of banner -->
     
@@ -251,16 +275,17 @@ jQuery(document).ready(function() {
 								<label for="hotelname">Well Come to Hotel star</label>
 								<input id="hotelname" name="hotelname" type="hidden" value = "Hotel Star" >
 							</p>
-							<p>Entry Date:<input name="cal" class="timeselect" type="date" onchange="onClickCheck()" id="calendar"required></p>
-							<p id="dat" class="error"></p>
+							
 							<p>
 								<label for="address">Address(required)</label>
-								<input id="address" name="address" type="address" class="center">
+								<input id="address" name="address" type="text" class="center" >
 							</p>
 							<p>
 								<label for="phone">Phone(required)</label>
-								<input id="phoneee" name="phone" type="phoneeee" class="center">
+								<input id="phone" name="phone" type="text" class="center">
 							</p>
+							<p>Entry Date:<input name="cal" class="timeselect" type="date" onchange="onClickCheck()" id="calendar"required></p>
+							<p id="dat" class="error"></p>
 							<p>
 								<label for="agree">Please agree to our policy</label>
 								<input type="checkbox" class="checkbox" id="agree" name="agree">
@@ -308,7 +333,7 @@ jQuery(document).ready(function() {
 							</fieldset>
 							<p>
 								<label for="ccomment">Your comment (required)</label>
-								<textarea id="ccomment" name="comment" required></textarea>
+								<textarea id="ccomment" name="comment" ></textarea>
 							 </p>
 							
 							<p>

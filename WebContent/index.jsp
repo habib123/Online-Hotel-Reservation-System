@@ -8,6 +8,12 @@
 <meta name="keywords" content="free website templates, hotel and travel, CSS, XHTML, design layout" />
 <meta name="description" content="Hotel and Travel - free website template provided by templatemo.com" />
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+<style>
+#templatemo_menu{
+padding-left: 100px;
+}
+</style>
+
 </head>
 <body>
 <div id="templatemo_container">
@@ -27,8 +33,7 @@
             <ul>
                 <li><a href="index.jsp"class="current">Home</a></li>
                 <li><a href="registrationForm.jsp">Bookings</a></li>
-                <li><a href="">Sign in</a></li>
-                <li><a href="">Sign out</a></li>
+                <li><a href="customerLogin.jsp">Sign in</a></li>
                 <li><a href="" class="last">Contact</a></li>
             </ul>  
         </div>    
@@ -76,9 +81,9 @@
         	
                 <div class="content_title_01">Single Room</div>
             <img src="images/templatemo_image_01.jpg" alt="image" />
-                <p>oes to <a href="http://www.photovaco.com" target="_blank">Free Photos</a> for photos.</p>
+                <p>Room Price : 50$ per night</p>
                 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum, urna eu feugiat ultricies, turpis leo tempor lacus, in vestibulum diam nisl sed lorem. </p>
+              <p>You get amazing facilities for this room package</br><br></br> </p>
               <p><a href="registrationForm.jsp">Booking</a></p>
        	  </div>
             
@@ -88,9 +93,9 @@
         	
                 <div class="content_title_01">Double Room</div>
             <img src="images/templatemo_image_01.jpg" alt="image" />
-                <p>This is a free website template provided by <a href="http://www.templatemo.com" target="_parent" title="free website template">templatemo.com</a>. You may download, modify and apply this layout for your personal or business websites. Credit goes to <a href="http://www.photovaco.com" target="_blank">Free Photos</a> for photos.</p>
+                              <p>Room Price : 50$ per night</p>
                 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum, urna eu feugiat ultricies, turpis leo tempor lacus, in vestibulum diam nisl sed lorem. </p>
+              <p>You get amazing facilities for this room package</br><br></br> </p>
               <p><a href="registrationForm.jsp">Booking</a></p>
        	  </div>
 			
@@ -98,9 +103,9 @@
         	
                 <div class="content_title_01">Executive Room</div>
             <img src="images/templatemo_image_01.jpg" alt="image" />
-                <p>This is a free website template provided by <a href="http://www.templatemo.com" target="_parent" title="free website template">templatemo.com</a>. You may download, modify and apply this layout for your personal or business websites. Credit goes to <a href="http://www.photovaco.com" target="_blank">Free Photos</a> for photos.</p>
+                              <p>Room Price : 50$ per night</p>
                 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum, urna eu feugiat ultricies, turpis leo tempor lacus, in vestibulum diam nisl sed lorem. </p>
+              <p>You get amazing facilities for this room package</br><br></br></p>
               <p><a href="registrationForm.jsp">Booking</a></p>
        	  </div>
 			
@@ -124,7 +129,7 @@
     </div>
     
     <div id="templatemo_footer">
-    Copyright ©  <a href="#"><strong>Tehcnical University of Munich</strong></a> | <a href="http://www.iwebsitetemplate.com" target="_parent">Seminar Project</a> by <a href="#">Md.Habibur Rahman</a>
+    Copyright ©  <a href="#"><strong>Tehcnical University of Munich</strong></a> | Seminar Project by <a href="#">Md.Habibur Rahman</a>
         <div style="clear: both; margin-top: 10px;">                
             <a href="#"></a>
             <a href="#"></a>        </div> 

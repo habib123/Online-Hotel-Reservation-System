@@ -11,7 +11,7 @@ public class BookBean {
 	private double price_perday;
 	private String room_type;
 	private String booked_time;
-	private Timestamp entry_time;
+	private String entry_time;
 	private Date exit_time;
 	private String address;
 	private String phone;
@@ -69,10 +69,10 @@ public class BookBean {
 	public void setBooked_time(String booked_time) {
 		this.booked_time = booked_time;
 	}
-	public Timestamp getEntry_time() {
+	public String getEntry_time() {
 		return entry_time;
 	}
-	public void setEntry_time(Timestamp entry_time) {
+	public void setEntry_time(String entry_time) {
 		this.entry_time = entry_time;
 	}
 	public Date getExit_time() {
