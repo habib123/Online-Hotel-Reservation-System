@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html5/loose.dtd">
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Hotel Reservation System</title>
@@ -11,12 +14,13 @@
 <link rel="stylesheet" href="css/screen.css">
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 	<script src="lib/jquery.js"></script>
 	<script src="dist/jquery.validate.js"></script>
 	<script>
-
-	$().ready(function() {
+ //$.noConflict();
+	 $(document).ready(function() {
 
 		$("#signupForm").validate({
 			rules: {
@@ -66,7 +70,39 @@
 				email: "Please enter a valid email address",
 				agree: "Please accept our policy"
 			}
+			
+			        
+   
+			
 		});
+
+
+		var form = $('#signupForm1');
+form.submit(function () {
+ 
+$.ajax({
+type: form.attr('method'),
+url: form.attr('action'),
+data: form.serialize(),
+success: function (data) {
+var result=data;
+
+			if(data=="exist"){
+			$('#result').attr("value","Dublicate Username");
+			return false;
+			}
+			
+},
+
+error: function( errorThrown ){ $('#result').attr("value","Dublicate Username"); }
+
+
+
+});
+ 
+return false;
+});
+
 
 		// propose username by combining first- and lastname
 		$("#username").focus(function() {
@@ -76,19 +112,16 @@
 				this.value = firstname + "." + lastname;
 			}
 		});
+		
+	}); // function
+	
+/*	 $.noConflict();
 
-		//code to hide topic selection, disable for demo
-		var newsletter = $("#newsletter");
-		// newsletter topics are optional, hide at first
-		var inital = newsletter.is(":checked");
-		var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
-		var topicInputs = topics.find("input").attr("disabled", !inital);
-		// show when newsletter is checked
-		newsletter.click(function() {
-			topics[this.checked ? "removeClass" : "addClass"]("gray");
-			topicInputs.attr("disabled", !this.checked);
-		});
-	});
+	
+	
+	*/
+	
+	
 	</script>
 	<style>
 	
@@ -108,7 +141,8 @@
 	 font-size: 200%;
 	  color: green;
 	}
-	
+	#result{
+	}
 
 #templatemo_menu{
 padding-left: 100px;
@@ -146,6 +180,11 @@ padding-left: 100px;
     </div> <!-- end of banner -->
     
     <div id="templatemo_content">
+
+   
+
+    
+    
     
     	<div id="content_left">
         	<div class="content_left_section">
@@ -188,13 +227,20 @@ padding-left: 100px;
 				<div id="main">
 					<p id="headlin">Welcome for  Room Booking Registration Form</p>
 					
+					 <c:if test="${not empty username1}">
+							  <p id="result">"${username1}"<p>
+					 </c:if>
+					
 					<form class="cmxform" id="signupForm" method="post" action="registration">
 						<fieldset>
 							<p>Complete the form with your information</p><hr size="2" width="50%" noshade style="color:#000000" align="left" />
+							    
+							
 							<p id="hname">
 								<label for="hotelname">Hotelname</label>
 								<input id="hotelname" name="hotelname" type="text" value = "Hotel Star" disabled>
 							</p>
+							
 							<p>
 								<label for="firstname">Firstname</label>
 								<input id="firstname" name="firstname" type="text" style= "float:centre;" class="center" >
@@ -224,6 +270,17 @@ padding-left: 100px;
 							</p>
 						</fieldset>
 					</form>
+					
+					
+					
+
+					
+					
+					
+					
+					
+					
+					
 				</div>
 				
        	  </div>

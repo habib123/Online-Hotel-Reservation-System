@@ -93,7 +93,7 @@ padding-left: 100px;
         	
                 <div class="content_title_01">Double Room</div>
             <img src="images/templatemo_image_01.jpg" alt="image" />
-                              <p>Room Price : 50$ per night</p>
+                              <p>Room Price : 80$ per night</p>
                 
               <p>You get amazing facilities for this room package</br><br></br> </p>
               <p><a href="registrationForm.jsp">Booking</a></p>
@@ -103,7 +103,7 @@ padding-left: 100px;
         	
                 <div class="content_title_01">Executive Room</div>
             <img src="images/templatemo_image_01.jpg" alt="image" />
-                              <p>Room Price : 50$ per night</p>
+                              <p>Room Price : 100$ per night</p>
                 
               <p>You get amazing facilities for this room package</br><br></br></p>
               <p><a href="registrationForm.jsp">Booking</a></p>

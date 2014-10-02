@@ -15,5 +15,10 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernete"/>
 	<classpathentry kind="lib" path="C:/apache-tomcat-7.0.34/lib/mysql-connector.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Json Library">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

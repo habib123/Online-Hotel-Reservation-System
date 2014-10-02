@@ -73,5 +73,50 @@ public class LoginDao extends AbstractDao{
 		
 		return user_id;
 	}
+	public  int checkUserbyUserName(String userName) throws Exception{
+		//LoginBean loginBean = new LoginBean();
+		int user_id=0;
+		String query = new StringBuilder()
+		.append("SELECT user_id from login ")
+		.append("where user_name = ? ").toString();
+				
+		try{
+			Connection con = createConnection();
+			PreparedStatement prepareStatement  =  con.prepareStatement(query); 
+			prepareStatement.setString(1, userName);
+			//prepareStatement.setString(2, password);
+			ResultSet rs = prepareStatement.executeQuery();
+			
+			if (!rs.next() ) {
+				user_id=0;
+			    System.out.println("no data");
+			} else {
 
-}
+			    do {
+			    	user_id = rs.getInt(1);
+			    } while (rs.next());
+			}
+	
+			
+		/*	prepareStatement  =  con.prepareStatement(query2); 
+			prepareStatement.setString(1, userNameOrEmail);
+			rs = prepareStatement.executeQuery();
+			if(rs.first()){
+				flag = true;
+			}*/
+			rs.close();
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			closeConnection();
+		}
+		
+		
+		return user_id;
+    }
+
+	
+	
+	 
+}//class
